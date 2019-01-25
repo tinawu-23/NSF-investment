@@ -1,0 +1,50 @@
+C044096	AwardTitle	IMPROVEMENT OF SCIENCE EDUCATION VIA TECHNOLOGY
+C044096	AwardEffectiveDate	01/01/1974
+C044096	AwardExpirationDate	01/01/1975
+C044096	AwardAmount	100000
+C044096	MinAmdLetterDate	04/13/2004
+C044096	IsHistoricalAward	1
+C044096	Institution-Name	Alabama Consortium Development of Higher Education Inc
+C044096	Institution-StateCode	AL
+C044096	Institution-StateName	Alabama
+C044096	Institution-CountryFlag	1
+C044096	AwardAmountRangeCategory	3
+C044096	AwardExpirationDateEpoch	157784400
+C044096	MinAmdLetterDateEpoch	1081828800
+C044096	AwardEffectiveDateEpoch	126248400
+C044096	AwardID	C044096
+C049000	AwardTitle	CONTRACT FOR RECORDING OF DATA FOR SPECIMENS COLLECTED  DURING THE U.S. ANTARCTIC PROGRAM
+C049000	AwardEffectiveDate	01/01/1971
+C049000	AwardExpirationDate	01/01/1972
+C049000	AwardAmount	54339
+C049000	MinAmdLetterDate	04/13/2004
+C049000	IsHistoricalAward	1
+C049000	Institution-Name	Smithsonian Institution
+C049000	Institution-StateCode	DC
+C049000	Institution-StateName	District of Columbia
+C049000	Institution-CountryFlag	1
+C049000	AwardAmountRangeCategory	2
+C049000	AwardExpirationDateEpoch	63090000
+C049000	MinAmdLetterDateEpoch	1081828800
+C049000	AwardEffectiveDateEpoch	31554000
+C049000	AwardID	C049000
+C062400	AwardTitle	CONTRACT FOR FEDERAL-STATE SCIENCE POLICY FORMULATION
+C062400	AwardEffectiveDate	01/01/1971
+C062400	AwardExpirationDate	07/01/1971
+C062400	AwardAmount	5000
+C062400	MinAmdLetterDate	04/13/2004
+C062400	IsHistoricalAward	1
+C062400	Institution-Name	Institute For the Future
+C062400	Institution-StateCode	CT
+C062400	Institution-StateName	Connecticut
+C062400	Institution-CountryFlag	1
+C062400	AwardAmountRangeCategory	1
+C062400	AwardExpirationDateEpoch	47188800
+C062400	MinAmdLetterDateEpoch	1081828800
+C062400	AwardEffectiveDateEpoch	31554000
+C062400	AwardID	C062400
+C064800	AwardTitle	CONTRACT FOR SUPPORTING SERVICES RELATING TO THE PROMOTING  AND CONDUCTING OF A SERIES OF TWENTY-FOUR REGIONAL CONFERENCES IN THE  MATHEMATICAL SCIENCES
+C064800	AwardEffectiveDate	01/01/1971
+C064800	AwardExpirationDate	07/01/1973
+C064800	AwardAmount	95850
+C064800	MinAmdLetterDate	04/13/2004
