@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from tqdm import tqdm
 from multiprocessing import Pool
+import matplotlib.pyplot as plt
 
 def name_award_papercnt():
 	# NSF dataset
@@ -68,6 +69,16 @@ def name_award_papercnt():
 	print("Finished loading author name -> author ids -> paper ids (paper cnts)")
 
 	# print(name2donation)
+
+	awardamounts = []
+	papercounts = []
+
+	for name, prop in name2donation:
+		awardamounts.append(prop['AwardAmount'])
+		papercounts.append(prop['papercnt'])
+		
+	plt.scatter(awardamounts, papercounts)
+	plt.show()
 
 if __name__ == '__main__':
 	name_award_papercnt()
