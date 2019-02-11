@@ -1,0 +1,7 @@
+paperid1	authorid1
+paperid2	authorid2
+paperid3	authorid1
+paperid4	authorid1
+paperid5	authorid1
+paperid6	authorid3
+paperid7	authorid2

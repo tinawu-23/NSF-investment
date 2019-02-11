@@ -1,0 +1,6 @@
+1	AwardAmount	1000
+2	Investigator-FirstName	Tina
+3	Investigator-LastName	Wu
+4	AwardAmount	6000
+5	Investigator-FirstName	Lebron
+6	Investigator-LastName	James
