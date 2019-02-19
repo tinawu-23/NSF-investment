@@ -24,9 +24,9 @@ def name_award_papercnt():
 				name = (firstname+' '+lastname).lower()
 				if not name in name2donation:
 					name2donation[name] = {}
-					name2donation[name]['AwardAmount'] = awardamount
+					name2donation[name]['AwardAmount'] = int(awardamount)
 				else:
-					name2donation[name]['AwardAmount'] += awardamount
+					name2donation[name]['AwardAmount'] += int(awardamount)
 	fr.close()
 	print("Finished loading author name -> award amount.")
 	
@@ -73,11 +73,19 @@ def name_award_papercnt():
 	awardamounts = []
 	papercounts = []
 
-	for name, prop in name2donation:
-		awardamounts.append(prop['AwardAmount'])
-		papercounts.append(prop['papercnt'])
-		
-	plt.scatter(awardamounts, papercounts)
+	fw = open('authorawardpapercnt.txt','w')
+
+	for name, prop in name2donation.items():
+		try:
+			papercounts.append(prop['papercnt'])
+			awardamounts.append(prop['AwardAmount'])
+			fw.write("{},{},{}\n".format(name, prop['AwardAmount'], prop['papercnt']))
+		except:
+			continue
+	fw.close()
+
+	# plt.scatter(awardamounts, papercounts)
+	plt.loglog(awardamounts, papercounts)
 	plt.show()
 
 if __name__ == '__main__':
