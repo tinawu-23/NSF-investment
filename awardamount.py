@@ -22,13 +22,19 @@ def name_award_papercnt():
 			if arr[1] == 'Investigator-LastName':
 				lastname = arr[2]
 				name = (firstname+' '+lastname).lower()
-				if not name in name2donation:
-					name2donation[name] = {}
-					name2donation[name]['AwardAmount'] = int(awardamount)
-				else:
-					name2donation[name]['AwardAmount'] += int(awardamount)
+		if arr[1] == 'Institution-Name':
+			institution = arr[2].strip().lower()
+			nameid = "{}**{}".format(name,institution)
+			if not nameid in name2donation:
+				name2donation[nameid] = {}
+				name2donation[nameid]['AwardAmount'] = int(awardamount)
+			else:
+				name2donation[nameid]['AwardAmount'] += int(awardamount)
+
 	fr.close()
-	print("Finished loading author name -> award amount.")
+	#print(name2donation)
+
+	print("Finished loading nameid (author name + institution name)-> award amount.")
 	
 	# MAG dataset
 	# Author ID: {Papaer IDs}
@@ -37,13 +43,17 @@ def name_award_papercnt():
 	# fr = open('testfile/test2.txt','r')
 	for line in tqdm(fr):
 		arr = line.strip('\r\n').split('\t')
-		pid,uid = arr[0],arr[1]
+		pid,uid,institution = arr[0],arr[1],arr[4]
+		institution = institution.strip().lower()
 		if not uid in uid2pid:
-			uid2pid[uid] = set()
-		uid2pid[uid].add(pid)
+			uid2pid[uid] = []
+			uid2pid[uid].append("")
+			uid2pid[uid].append(set())
+		uid2pid[uid][0] = institution
+		uid2pid[uid][1].add(pid)
 	
 	fr.close()
-	print("Finished loading author id -> paper ids.")
+	print("Finished loading author id -> institution & paper ids.")
 
 	# MAG dataset
 	# if the name in Authors.txt also appeared in NSF dataset, add to name2uid table, update name2donation table
@@ -51,42 +61,47 @@ def name_award_papercnt():
 	# Author ID -> paper IDs from uid2pid
 	# counts total publication for each author
 	name2uid = {}
+	nameiddict = {}
 	fr = open('/afs/crc.nd.edu/group/dmsquare/vol1/data/MicrosoftAcademicGraph/Authors.txt','r')
 	# fr = open('testfile/test3.txt','r')
 	for line in tqdm(fr):
 		arr = line.strip('\r\n').split('\t')
 		uid,name = arr[0],arr[1]
-		if name in name2donation:
-			if not name in name2uid:
-				name2uid[name] = set()
-				name2donation[name]['uid'] = set()
-				name2donation[name]['papercnt'] = 0
-			name2uid[name].add(uid)
-			name2donation[name]['uid'].add(uid)
-			if uid in uid2pid:
-				name2donation[name]['papercnt'] += len(uid2pid[uid])
+		if uid in uid2pid:
+			institution = uid2pid[uid][0]
+			papercnt = len(uid2pid[uid][1])
+			nameid = "{}**{}".format(name, institution)
+		else:
+			continue
+
+		if nameid in name2donation:
+			if not nameid in name2uid:
+				name2uid[nameid] = set()
+				nameiddict[nameid] = {}
+				nameiddict[nameid]['awardamount'] = name2donation[nameid]['AwardAmount']
+				nameiddict[nameid]['uid'] = set()
+				nameiddict[nameid]['papercnt'] = 0
+			name2uid[nameid].add(uid)
+			nameiddict[nameid]['uid'].add(uid)
+			nameiddict[nameid]['papercnt'] += papercnt
 	fr.close()
-	print("Finished loading author name -> author ids -> paper ids (paper cnts)")
+	print("Finished loading nameid (author name+institution) -> author ids + institution -> paper ids (paper cnts)")
 
-	# print(name2donation)
+	#print(nameiddict)
 
-	awardamounts = []
-	papercounts = []
-
+	# write nameid, awardamount and papercnt to file
 	fw = open('authorawardpapercnt.txt','w')
 
-	for name, prop in name2donation.items():
+	for name, prop in nameiddict.items():
 		try:
-			papercounts.append(prop['papercnt'])
-			awardamounts.append(prop['AwardAmount'])
-			fw.write("{},{},{}\n".format(name, prop['AwardAmount'], prop['papercnt']))
+			fw.write("{},{},{}\n".format(name, prop['awardamount'], prop['papercnt']))
 		except:
 			continue
 	fw.close()
 
 	# plt.scatter(awardamounts, papercounts)
-	plt.loglog(awardamounts, papercounts)
-	plt.show()
+	# plt.loglog(awardamounts, papercounts)
+	# plt.show()
 
 if __name__ == '__main__':
 	name_award_papercnt()
