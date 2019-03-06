@@ -1,6 +1,7 @@
 # NSF-investment
 
-data2obs.py: generate observations on the data; refer to ppt slides and pdfs in MAG folder
+data2obs.py: generate observations on the data; refer to ppt slides and pdfs in MAG folder  
+
 awardamount.py: a crude approach that generates graph of an author's awardamount vs. paper count  
 
 
